@@ -41,12 +41,17 @@ export const SAVE_BOOK = gql`
       link: $link
       title: $title
     ) {
-      bookId
-      authors
-      description
-      image
-      link
-      title
+      username
+      email
+      bookCount
+      savedBooks {
+        bookId
+        authors
+        description
+        image
+        link
+        title
+      }
     }
   }
 `;

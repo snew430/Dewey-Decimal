@@ -51,11 +51,12 @@ const SearchBooks = () => {
       const bookData = items.map((book) => ({
         bookId: book.id,
         authors: book.volumeInfo.authors || ["No author to display"],
-        title: book.volumeInfo.title,
         description: book.volumeInfo.description,
         image: book.volumeInfo.imageLinks?.thumbnail || "",
+        link: book.volumeInfo.infoLink || "",
+        title: book.volumeInfo.title,
       }));
-
+      console.log(bookData);
       setSearchedBooks(bookData);
       setSearchInput("");
     } catch (err) {
@@ -76,8 +77,9 @@ const SearchBooks = () => {
     }
 
     try {
+      console.log(bookToSave);
       await saveBook({
-        variables: { bookToSave },
+        variables: { ...bookToSave },
       });
 
       // if book successfully saves to user's account, save book id to state
